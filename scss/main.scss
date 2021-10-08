@@ -43,18 +43,17 @@ body {
     }
     img {
       max-height: 50vh;
+      max-width: 80vw;
       left: 0; right: 0;
       margin: auto;
     }
     .beef {
       position: absolute;
-      // bottom: 30%;
       transition: 1.5s;
       z-index: 1;
     }
     .shadow {
       position: absolute;
-      // bottom: 30%;
       transition: 1.5s;
       top: 5vh;
     }
