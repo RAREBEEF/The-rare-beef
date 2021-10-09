@@ -1,10 +1,42 @@
 $color--pink: #ffc2c9;
 $color--dark: #2b1719;
 
+
+
+@media (max-width:360px){
+  .link {
+    transform: translateY(-5vh);
+  }
+  @media (max-height: 620px){
+    .link {
+      transform: translateY(0);
+    }
+  }
+};
+
+
+// @media (max-width:265px){
+//   .link {
+//     transform: translateY(-10vh);
+//   }
+// };
+// @media (max-width:180px){
+//   .link {
+//     transform: translateY(-15vh);
+//   }
+// };
+
+
+
+
 body {
   position: relative;
-  // min-height: 98vh;
   background-color: $color--pink;
+  font: {
+      family: 'Raleway', sans-serif;
+      size: 10vh;
+      weight: 700;
+    };
   header {
     display: flex;
     color: $color--dark;
@@ -12,11 +44,7 @@ body {
       left: 1vw;
       top: 2vh;
     };
-    font: {
-      family: auto;
-      size: 10vh;
-      weight: 700;
-    };
+    
     h1 {
       display: flex;
       flex-wrap: wrap;
@@ -35,7 +63,6 @@ body {
   .logo {
     .wrapper {
       position: relative;
-      perspective: 100px;
       height: 55vh;
       margin: {
         top: 10vh;
@@ -50,17 +77,39 @@ body {
     .beef {
       position: absolute;
       transition: 1.5s;
-      z-index: 1;
+      z-index: 3;
+      &.active {
+        transform: translateY(-10vh) scale(1.1);
+        & + .shadow {
+          transform: translateY(10vh) scale(0.9);
+        }
+        & ~ .link {
+          transform: translateY(40vh) rotate(-345deg);
+          pointer-events: auto;
+        }
+      }
     }
     .shadow {
       position: absolute;
       transition: 1.5s;
       top: 5vh;
+      pointer-events: none;
+      z-index: 2;
     }
-    .beef:hover {
-      transform: translateY(-10vh) scale(1.1);
-      & + .shadow {
-        transform: translateY(10vh) scale(0.9);
+    .link {
+      position: absolute;
+      transition: 1.5s;
+      transform-origin: center;
+      max-width: 19vh;
+      width: 15vw;
+      left: 0;
+      right: 0;
+      top: 10vh;
+      margin: auto;
+      font-size: 0;
+      pointer-events: none;
+      img {
+        height: auto;
       }
     }
   }
@@ -69,5 +118,10 @@ body {
     width: 300px;
     margin: 10vh auto 1vh;
     text-align: center;
+    font: {
+      size: 16px;
+    };
   }
 }
+
+
