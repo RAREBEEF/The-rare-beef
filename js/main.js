@@ -1,6 +1,6 @@
 import gsap from "gsap/all";
 import "../scss/main.scss";
-import _ from "Lodash";
+import _ from "lodash";
 
 (function () {
   setTimeout(() => {
