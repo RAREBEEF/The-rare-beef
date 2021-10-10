@@ -1,5 +1,6 @@
 $color--pink: #ffc2c9;
 $color--dark: #2b1719;
+$color--pink-neon: rgb(255, 53, 87);
 
 
 
@@ -26,7 +27,10 @@ $color--dark: #2b1719;
 //   }
 // };
 
-
+* {
+  cursor: default;
+  user-select: none;
+}
 
 
 body {
@@ -41,7 +45,7 @@ body {
     display: flex;
     color: $color--dark;
     margin: {
-      left: 1vw;
+      left: 2vw;
       top: 2vh;
     };
     
@@ -57,6 +61,16 @@ body {
       padding: {
         top: 2vh;
       }
+    }
+  }
+  .switch {
+    position: fixed;
+    top: -10vh;
+    right: 10vw;
+    z-index: 4;
+    
+    img {
+      height: 40vh;
     }
   }
   
@@ -108,6 +122,7 @@ body {
       margin: auto;
       font-size: 0;
       pointer-events: none;
+      outline: none;
       img {
         height: auto;
       }
@@ -115,13 +130,30 @@ body {
   }
   
   footer {
-    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    // border: 1px solid gray;
+    min-width: 300px;
     margin: 10vh auto 1vh;
     text-align: center;
     font: {
-      size: 16px;
+      size: 2vw;
     };
+    .material-icons {
+      cursor: default;
+      font-size: 2vw;
+    }
   }
+
+  // .light-on {
+  //   color: white;
+  //   text-shadow: 0 0 7px rgb(255, 197, 207), 0 0 10px rgb(255, 197, 207), 0 0 21px rgb(255, 197, 207), 0 0 42px $color--pink-neon,
+  //   0 0 82px $color--pink-neon, 0 0 102px $color--pink-neon, 0 0 151px $color--pink-neon;
+  //   // text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px $color--pink-neon,
+  //   // 0 0 82px $color--pink-neon, 0 0 92px $color--pink-neon, 0 0 102px $color--pink-neon, 0 0 151px $color--pink-neon;
+  // }
 }
 
 

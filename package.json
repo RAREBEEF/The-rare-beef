@@ -31,5 +31,8 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "dependencies": {
+    "gsap": "^3.8.0"
+  }
 }
