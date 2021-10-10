@@ -40,6 +40,7 @@ body {
   position: relative;
   transition: 1.5s;
   background-color: $color--dark;
+  min-height: 95vh;
   font: {
       family: 'Raleway', sans-serif;
       size: 10vh;
@@ -52,7 +53,6 @@ body {
       left: 2vw;
       top: 2vh;
     };
-    
     h1 {
       display: flex;
       flex-wrap: wrap;
@@ -72,7 +72,6 @@ body {
     top: -15vh;
     right: 10vw;
     z-index: 1000;
-    transform-origin: top center;
     img {
       height: 40vh;
     }
@@ -81,13 +80,13 @@ body {
   .logo {
     .wrapper {
       position: relative;
-      height: 55vh;
+      height: 45vh;
       margin: {
         top: 10vh;
       };
     }
     img {
-      max-height: 50vh;
+      max-height: 45vh;
       max-width: 80vw;
       left: 0; right: 0;
       margin: auto;
@@ -103,7 +102,7 @@ body {
           transform: translateY(10vh) scale(0.9);
         }
         & ~ .link {
-          transform: translateY(40vh) rotate(-345deg);
+          transform: translateY(30vh) rotate(-345deg);
           pointer-events: auto;
         }
       }
@@ -139,13 +138,20 @@ body {
   }
   
   footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: block;
+    white-space: nowrap;
+    // justify-content: center;
+    // align-items: center;
     text-align: center;
-    // border: 1px solid gray;
-    min-width: 300px;
-    margin: 10vh auto 1vh;
+    border: 1px solid gray;
+    height: 17vh;
+    line-height: 23vh;
+    // position: absolute;
+    // left: 0; 
+    // right: 0;
+    // bottom: 0;
+    // min-width: 300px;
+    margin: 5vh auto 5vh;
     text-align: center;
     color: $color--text;
     font: {
