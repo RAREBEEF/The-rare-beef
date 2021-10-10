@@ -147,14 +147,15 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
       lightOnSound.load();
       // 순차적 네온 off(딜레이 때문에 안꺼지는 현상 방지하고자 순차적 off)
       lightEls.forEach((el, i) => {
-        clearTimeout(lightOffTimeout[i+1]);
         gsap.to(el, 0, {
           delay: i*.55,
           color: "#2b1719",
           "text-shadow": "none"
         });
       });
-      clearTimeout(lightOffTimeout[0]);
+      for (let i = 0; i < lightOffTimeout.length; i++) {
+        clearTimeout(lightOffTimeout[i]);
+      };
       lightOffTimeout = [];
       // 스위치 애니메이션
       gsap.to(lightToggleEl, .25, {
