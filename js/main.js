@@ -2,6 +2,7 @@ import gsap from "gsap/all";
 import "../scss/main.scss";
 import _ from "lodash";
 
+// console log
 (function () {
   setTimeout(() => {
     console.log(`© 2021. RAREBEEF All Rights Reserved.`);
@@ -17,9 +18,7 @@ import _ from "lodash";
 const selector = (selector) => document.querySelector(selector);
 const selectorAll = (selector) => document.querySelectorAll(selector);
 
-
-
-// 소고기 클릭 이벤트
+// beef click event
 (function () {
   const beefEl = selector(".beef");
   let isBeefActive = false;
@@ -34,12 +33,7 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
   });
 }());
 
-
-
-
-
-
-// 열쇠 클릭 이벤트
+// key click event
 (function () {  
   const clickIconEl = selector(".click-icon");
   const keyEl = selector(".key");
@@ -48,7 +42,7 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
   keyEl.addEventListener("click", () => {
     keyClicked = true;
   });
-  // 아이콘 클릭 이벤트
+  // ico click event
   let clickIconCount = 1;
   clickIconEl.addEventListener("click", () => {
     if (clickIconCount == 10) {
@@ -72,9 +66,8 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
   });
 }());
 
-
-// 키보드 입력 이벤트
-// TODO: 새로운 이벤트 구상하고 부여하기
+// keyboard click event
+// TODO: add new event
 // (function () {
 //   const lightEls = selectorAll(".light");
 //   const lightToggleEl = selector(".toggle-light")
@@ -99,14 +92,7 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
 //   };
 // }());
 
-
-
-(function () {
-
-}());
-
-
-// 스위치 클릭 이벤트
+// switch click event
 (function () {
   const lightOnSound = new Audio("./audios/light-on.mp3");
   const lightOffSound = new Audio("./audios/light-off.mp3");
@@ -122,18 +108,18 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
     if(lightActive) {
       lightActive = true;
       lightOnSound.play();
-      // 시간 종료시 스위치 애니메이션 실행
-      lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: "-5vh", repeat: 1, yoyo: true}); beefEl.classList.remove("bright");}, 26000));
-      // 순차적 네온 on
+      // timeout -> switch animation & beef light off & toggle boolean
+      lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: "-5vh", repeat: 1, yoyo: true}); beefEl.classList.remove("bright"); lightActive = false;}, 26000));
+      // sequential light on
       lightEls.forEach((el, i) => {
-        lightOffTimeout.push(setTimeout(() => {gsap.to(el, 0, {delay: i*.55, color: "#2b1719", "text-shadow": "none"}); lightActive = false}, 26000)); // 시간 종료 시 네온 off
+        lightOffTimeout.push(setTimeout(() => {gsap.to(el, 0, {delay: i*.55, color: "#2b1719", "text-shadow": "none"});}, 26000)); // timeout -> light off
         gsap.to(el, 0, {
           delay: i*.55,
           color: "white",
           "text-shadow": "rgb(255, 197, 207) 0 0 21px , rgb(255, 53, 87) 0 0 42px , rgb(255, 53, 87) 0 0 82px , rgb(255, 53, 87) 0 0 102px "
         });
       });
-      // 스위치 애니메이션
+      // light on switch animation
       gsap.to(lightToggleEl, .25, {
         top: "-5vh",
         repeat: 1,
@@ -145,7 +131,7 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
       lightOffSound.play();
       lightOnSound.pause();
       lightOnSound.load();
-      // 순차적 네온 off(딜레이 때문에 안꺼지는 현상 방지하고자 순차적 off)
+      // sequential light off
       lightEls.forEach((el, i) => {
         gsap.to(el, 0, {
           delay: i*.55,
@@ -153,79 +139,19 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
           "text-shadow": "none"
         });
       });
+      // shutdown all timeout function
       for (let i = 0; i < lightOffTimeout.length; i++) {
         clearTimeout(lightOffTimeout[i]);
       };
       lightOffTimeout = [];
-      // 스위치 애니메이션
+      // light off switch animation
       gsap.to(lightToggleEl, .25, {
         top: "-5vh",
         repeat: 1,
         yoyo: true
       });
+      // beef light off
       beefEl.classList.remove("bright");
     };
   }, 2000));
 }());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// (function () {
-//   const lightOnSound = new Audio("./audios/light-on.mp3");
-//   const lightOffSound = new Audio("./audios/light-off.mp3");
-//   const lightEls = selectorAll(".light");
-//   const lightToggleEl = selector(".toggle-light")
-//   let lightActive = false;
-//   let lightOnTimeout = [];
-//   let lightOffTimeout = [];
-//   lightToggleEl.addEventListener("click", () => {
-//     lightActive = !lightActive;
-//     if(lightActive) {
-//       lightActive = true;
-//       lightOnSound.play();
-//       lightEls.forEach((el, i) => {
-//         lightOnTimeout.push(setTimeout(() => {el.classList.add("light-on")}, 550*i));
-//         lightOffTimeout.push(setTimeout(() => {el.classList.remove("light-on"); lightActive = false}, 26000));
-//       });
-//       gsap.to(lightToggleEl, .5, {
-//         top: 0
-//       });
-//       gsap.to(lightToggleEl, .5, {
-//         top: "-10vh",
-//         delay: .5
-//       });
-//     } else if (!lightActive) {
-//       lightActive = false;
-//       lightOffSound.play();
-//       lightOnSound.pause();
-//       lightOnSound.load();
-//       lightEls.forEach((el, i) => {
-//         el.classList.remove("light-on");
-//         clearTimeout(lightOnTimeout[i]);
-//         clearTimeout(lightOffTimeout[i]);
-//       });
-//       lightOnTimeout = [];
-//       lightOffTimeout = [];
-//       gsap.to(lightToggleEl, .5, {
-//         top: 0
-//       });
-//       gsap.to(lightToggleEl, .5, {
-//         top: "-10vh",
-//         delay: .5
-//       });
-//     };
-//   });
-// }());

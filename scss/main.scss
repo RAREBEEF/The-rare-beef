@@ -3,10 +3,6 @@ $color--text: #2b1719;
 $color--dark: #5c4447; 
 $color--pink-neon: rgb(255, 53, 87);
 
-
-
-
-
 @media (max-width:360px){
   .link {
     transform: translateY(-5vh);
@@ -18,23 +14,10 @@ $color--pink-neon: rgb(255, 53, 87);
   }
 };
 
-
-// @media (max-width:265px){
-//   .link {
-//     transform: translateY(-10vh);
-//   }
-// };
-// @media (max-width:180px){
-//   .link {
-//     transform: translateY(-15vh);
-//   }
-// };
-
 * {
   cursor: default;
   user-select: none;
 }
-
 
 body {
   position: relative;
@@ -47,12 +30,15 @@ body {
       weight: 700;
     };
   header {
-    display: flex;
-    color: $color--text;
-    margin: {
-      left: 2vw;
-      top: 2vh;
-    };
+    .wrapper {
+      // display: flex;
+      color: $color--text;
+      margin: {
+        left: 2vw;
+        top: 2vh;
+      };
+    }
+
     h1 {
       display: flex;
       flex-wrap: wrap;
@@ -162,9 +148,10 @@ body {
       size: 2vw;
     };
     .light {
-      // for safari text-shadow bug fix
+      // for safari text-shadow bug fix //
       display: inline-block;
       transform: translateZ(0);
+      ////////////////////////////////////
     }
     .material-icons {
       cursor: default;
