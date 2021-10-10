@@ -100,23 +100,30 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
 // }());
 
 
+
+(function () {
+
+}());
+
+
 // 스위치 클릭 이벤트
 (function () {
   const lightOnSound = new Audio("./audios/light-on.mp3");
   const lightOffSound = new Audio("./audios/light-off.mp3");
   const lightEls = selectorAll(".light");
   const lightToggleEl = selector(".toggle-light");
+  const beefEl = selector(".beef");
   let lightOffTimeout = [];
   let lightActive = false;
-  
 
   lightToggleEl.addEventListener("click", _.throttle(() => {
+
     lightActive = !lightActive;
     if(lightActive) {
       lightActive = true;
       lightOnSound.play();
       // 시간 종료시 스위치 애니메이션 실행
-      lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: 0, repeat: 1, yoyo: true});}, 26000));
+      lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: "-5vh", repeat: 1, yoyo: true}); beefEl.classList.add("bright");}, 26000));
       // 순차적 네온 on
       lightEls.forEach((el, i) => {
         lightOffTimeout.push(setTimeout(() => {gsap.to(el, 0, {delay: i*.55, color: "#2b1719", "text-shadow": "none"}); lightActive = false}, 26000)); // 시간 종료 시 네온 off
@@ -128,10 +135,11 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
       });
       // 스위치 애니메이션
       gsap.to(lightToggleEl, .25, {
-        top: 0,
+        top: "-5vh",
         repeat: 1,
         yoyo: true
       });
+      beefEl.classList.add("bright");
     } else if (!lightActive) {
       lightActive = false;
       lightOffSound.play();
@@ -150,10 +158,11 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
       lightOffTimeout = [];
       // 스위치 애니메이션
       gsap.to(lightToggleEl, .25, {
-        top: 0,
+        top: "-5vh",
         repeat: 1,
         yoyo: true
       });
+      beefEl.classList.remove("bright");
     };
   }, 2000));
 }());
