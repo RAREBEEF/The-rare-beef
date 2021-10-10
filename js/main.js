@@ -123,7 +123,7 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
       lightActive = true;
       lightOnSound.play();
       // 시간 종료시 스위치 애니메이션 실행
-      lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: "-5vh", repeat: 1, yoyo: true}); beefEl.classList.add("bright");}, 26000));
+      lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: "-5vh", repeat: 1, yoyo: true}); beefEl.classList.remove("bright");}, 26000));
       // 순차적 네온 on
       lightEls.forEach((el, i) => {
         lightOffTimeout.push(setTimeout(() => {gsap.to(el, 0, {delay: i*.55, color: "#2b1719", "text-shadow": "none"}); lightActive = false}, 26000)); // 시간 종료 시 네온 off
