@@ -130,7 +130,7 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
         gsap.to(el, 0, {
           delay: i*.55,
           color: "white",
-          "text-shadow": "0 0 21px rgb(255, 197, 207), 0 0 42px rgb(255, 53, 87), 0 0 82px rgb(255, 53, 87), 0 0 102px rgb(255, 53, 87)"
+          "text-shadow": "rgb(255, 197, 207) 0 0 21px , rgb(255, 53, 87) 0 0 42px , rgb(255, 53, 87) 0 0 82px , rgb(255, 53, 87) 0 0 102px "
         });
       });
       // 스위치 애니메이션

@@ -58,6 +58,10 @@ body {
       flex-wrap: wrap;
     }
     h2 {
+      // for safari text-shadow bug fix //
+      display: flex;
+      transform: translateZ(0);
+      ////////////////////////////////////
       font: {
         size: 5vh;
         weight: light;
@@ -157,6 +161,11 @@ body {
     font: {
       size: 2vw;
     };
+    .light {
+      // for safari text-shadow bug fix
+      display: inline-block;
+      transform: translateZ(0);
+    }
     .material-icons {
       cursor: default;
       font-size: 2vw;
