@@ -107,7 +107,7 @@ body {
     }
     .shadow {
       position: absolute;
-      transition: 1.5s, opacity 1.5s;
+      transition: transform 1.5s, opacity 1.5s;
       top: 5vh;
       pointer-events: none;
       z-index: 2;
@@ -127,7 +127,11 @@ body {
       outline: none;
       opacity: 0;
       img {
+        cursor: pointer;
         height: auto;
+      }
+      &:hover {
+        filter: brightness(1.2);
       }
     }
   }
@@ -172,7 +176,7 @@ body {
       filter: brightness(1);
       transition: filter 2s 1.5s, transform 1.5s 0s;
       & + .shadow {
-        transition: 1.5s, opacity 4s;
+        transition: transform 1.5s, opacity 4s;
         opacity: .4
       }
     }
