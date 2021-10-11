@@ -1,6 +1,6 @@
 $color--pink: #ffc2c9;
-$color--text: #2b1719;
-$color--dark: #5c4447; 
+$color--text: #221718;
+$color--dark: #ce979e; 
 $color--pink-neon: rgb(255, 53, 87);
 
 @media (max-width:360px){
@@ -21,8 +21,8 @@ $color--pink-neon: rgb(255, 53, 87);
 
 body {
   position: relative;
-  transition: 1.5s;
-  background-color: $color--dark;
+  transition: background-color 1.5s;
+  background-color: rgb(43, 43, 43);
   min-height: 95vh;
   font: {
       family: 'Raleway', sans-serif;
@@ -64,7 +64,11 @@ body {
     z-index: 1000;
     img {
       height: 40vh;
+      cursor: pointer;
     }
+    &:hover {
+      filter:brightness(2);
+    };
   }
   
   .logo {
@@ -82,6 +86,8 @@ body {
       margin: auto;
     }
     .beef {
+      pointer-events: none;
+      border-radius: 100% 200% 80% 120%;
       position: absolute;
       transition: filter 2s 0s, transform 1.5s 0s;
       filter: brightness(.3);
@@ -92,25 +98,23 @@ body {
           transform: translateY(10vh) scale(0.9);
         }
         & ~ .link {
+          transition: transform 1.5s, opacity 0s;
           transform: translateY(30vh) rotate(-345deg);
           pointer-events: auto;
+          opacity: 1;
         }
-      }
-      &.bright {
-        filter: brightness(1);
-        transition: filter 2s 2s, transform 1.5s 0s;
       }
     }
     .shadow {
       position: absolute;
-      transition: 1.5s;
+      transition: 1.5s, opacity 1.5s;
       top: 5vh;
       pointer-events: none;
       z-index: 2;
     }
     .link {
       position: absolute;
-      transition: 1.5s;
+      transition: transform 1.5s, opacity 0s 1.5s;
       transform-origin: center;
       max-width: 19vh;
       width: 15vw;
@@ -121,6 +125,7 @@ body {
       font-size: 0;
       pointer-events: none;
       outline: none;
+      opacity: 0;
       img {
         height: auto;
       }
@@ -154,8 +159,26 @@ body {
       ////////////////////////////////////
     }
     .material-icons {
-      cursor: default;
+      pointer-events: none;
       font-size: 2vw;
+    }
+  }
+  &.bright {
+    transition: background-color 1.5s 1.5s;
+    background-color: $color--dark;
+    & .beef {
+      pointer-events: auto;
+      cursor: pointer;
+      filter: brightness(1);
+      transition: filter 2s 1.5s, transform 1.5s 0s;
+      & + .shadow {
+        transition: 1.5s, opacity 4s;
+        opacity: .4
+      }
+    }
+    & .material-icons {
+      pointer-events: auto;
+      cursor: pointer;
     }
   }
 }

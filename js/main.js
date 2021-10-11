@@ -2,21 +2,24 @@ import gsap from "gsap/all";
 import "../scss/main.scss";
 import _ from "lodash";
 
+const selector = (selector) => document.querySelector(selector);
+const selectorAll = (selector) => document.querySelectorAll(selector);
+
 // console log
 (function () {
   setTimeout(() => {
     console.log(`© 2021. RAREBEEF All Rights Reserved.`);
-    console.log(`- Click the beef.
+    console.log(`
+    - Light on.
+
+    - Click the rare beef.
     
     - Click the key one or more times, then click the "click icon" somewhere 10 times.
     
-    - Click switch
     `);
   }, 3000);
 }());
 
-const selector = (selector) => document.querySelector(selector);
-const selectorAll = (selector) => document.querySelectorAll(selector);
 
 // beef click event
 (function () {
@@ -92,14 +95,22 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
 //   };
 // }());
 
+
+
+
+
 // switch click event
 (function () {
   const lightOnSound = new Audio("./audios/light-on.mp3");
   const lightOffSound = new Audio("./audios/light-off.mp3");
+  const lightingSound = new Audio("./audios/light-ing.mp3");
+  lightingSound.loop = true;
+  lightingSound.volume = 0.03;
   const lightEls = selectorAll(".light");
   const lightToggleEl = selector(".toggle-light");
   const beefEl = selector(".beef");
-  let lightOffTimeout = [];
+  const bodyEl = selector("body");
+  // let lightOffTimeout = [];
   let lightActive = false;
 
   lightToggleEl.addEventListener("click", _.throttle(() => {
@@ -108,15 +119,21 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
     if(lightActive) {
       lightActive = true;
       lightOnSound.play();
+      lightOnSound.addEventListener("ended", () => {
+        lightOnSound.load();
+        lightingSound.play();
+      });
       // timeout -> switch animation & beef light off & toggle boolean
-      lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: "-5vh", repeat: 1, yoyo: true}); beefEl.classList.remove("bright"); lightActive = false;}, 26000));
+      // lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: "-5vh", repeat: 1, yoyo: true}); beefEl.classList.remove("bright"); lightActive = false;}, 26000));
       // sequential light on
       lightEls.forEach((el, i) => {
-        lightOffTimeout.push(setTimeout(() => {gsap.to(el, 0, {delay: i*.55, color: "#2b1719", "text-shadow": "none"});}, 26000)); // timeout -> light off
-        gsap.to(el, 0, {
+        // lightOffTimeout.push(setTimeout(() => {gsap.to(el, 0, {delay: i*.55, color: "#221718", "text-shadow": "none"});}, 26000)); // timeout -> light off
+        gsap.to(el, 0.2, {
+          repeat: 4-i*2,
+          yoyo: true,
           delay: i*.55,
           color: "white",
-          "text-shadow": "rgb(255, 197, 207) 0 0 21px , rgb(255, 53, 87) 0 0 42px , rgb(255, 53, 87) 0 0 82px , rgb(255, 53, 87) 0 0 102px "
+          "text-shadow": "rgb(255, 197, 207) 0 0 21px , rgb(255, 53, 87) 0 0 42px , rgb(255, 53, 87) 0 0 82px , rgb(255, 53, 87) 0 0 102px ",
         });
       });
       // light on switch animation
@@ -125,33 +142,35 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
         repeat: 1,
         yoyo: true
       });
-      beefEl.classList.add("bright");
+      bodyEl.classList.add("bright");
     } else if (!lightActive) {
       lightActive = false;
-      lightOffSound.play();
-      lightOnSound.pause();
-      lightOnSound.load();
+      lightOffSound.play(); lightOnSound.load(); lightingSound.load();
       // sequential light off
       lightEls.forEach((el, i) => {
         gsap.to(el, 0, {
-          delay: i*.55,
-          color: "#2b1719",
+          delay: i*.3,
+          color: "#221718",
           "text-shadow": "none"
         });
       });
       // shutdown all timeout function
-      for (let i = 0; i < lightOffTimeout.length; i++) {
-        clearTimeout(lightOffTimeout[i]);
-      };
-      lightOffTimeout = [];
+      // for (let i = 0; i < lightOffTimeout.length; i++) {
+      //   clearTimeout(lightOffTimeout[i]);
+      // };
+      // lightOffTimeout = [];
       // light off switch animation
       gsap.to(lightToggleEl, .25, {
         top: "-5vh",
         repeat: 1,
         yoyo: true
       });
-      // beef light off
-      beefEl.classList.remove("bright");
+      // beef light off & deactive
+      beefEl.classList.remove("active");
+      bodyEl.classList.remove("bright");
     };
   }, 2000));
 }());
+
+
+//TODO:스위치 액티브 true일 때만 모든 상호작용 허용하기
