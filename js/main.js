@@ -20,7 +20,6 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
   }, 3000);
 }());
 
-
 // beef click event
 (function () {
   const beefEl = selector(".beef");
@@ -95,17 +94,10 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
 //   };
 // }());
 
-
-
-
-
 // switch click event
 (function () {
   const lightOnSound = new Audio("./audios/light-on.mp3");
   const lightOffSound = new Audio("./audios/light-off.mp3");
-  const lightingSound = new Audio("./audios/light-ing.mp3");
-  lightingSound.loop = true;
-  lightingSound.volume = 0.03;
   const lightEls = selectorAll(".light");
   const lightToggleEl = selector(".toggle-light");
   const beefEl = selector(".beef");
@@ -119,10 +111,6 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
     if(lightActive) {
       lightActive = true;
       lightOnSound.play();
-      lightOnSound.addEventListener("ended", () => {
-        lightOnSound.load();
-        lightingSound.play();
-      });
       // timeout -> switch animation & beef light off & toggle boolean
       // lightOffTimeout.push(setTimeout(() => {gsap.to(lightToggleEl, .25, {top: "-5vh", repeat: 1, yoyo: true}); beefEl.classList.remove("bright"); lightActive = false;}, 26000));
       // sequential light on
@@ -145,7 +133,7 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
       bodyEl.classList.add("bright");
     } else if (!lightActive) {
       lightActive = false;
-      lightOffSound.play(); lightOnSound.load(); lightingSound.load();
+      lightOffSound.play(); lightOnSound.load();
       // sequential light off
       lightEls.forEach((el, i) => {
         gsap.to(el, 0, {
@@ -171,6 +159,3 @@ const selectorAll = (selector) => document.querySelectorAll(selector);
     };
   }, 2000));
 }());
-
-
-//TODO:스위치 액티브 true일 때만 모든 상호작용 허용하기
