@@ -1,6 +1,7 @@
 $color--pink: #ffc2c9;
 $color--text: #221718;
-$color--dark: #ce979e; 
+$color--bc: #ce979e; 
+$color--bc-dark: rgb(43, 43, 43);
 $color--pink-neon: rgb(255, 53, 87);
 
 @media (max-width:360px){
@@ -19,23 +20,24 @@ $color--pink-neon: rgb(255, 53, 87);
   user-select: none;
 }
 
+
+
+
+
 body {
   position: relative;
-  transition: background-color 1.5s;
-  background-color: rgb(43, 43, 43);
   min-height: 95vh;
+  background-color: $color--bc-dark;
+  transition: background-color 1.5s;
   font: {
-      family: 'Raleway', sans-serif;
-      size: 10vh;
-      weight: 700;
+      family: 'Raleway', sans-serif; size: 10vh; weight: 700;
     };
+
   header {
     .wrapper {
-      // display: flex;
       color: $color--text;
       margin: {
-        left: 2vw;
-        top: 2vh;
+        left: 2vw; top: 2vh;
       };
     }
 
@@ -43,32 +45,34 @@ body {
       display: flex;
       flex-wrap: wrap;
     }
+
     h2 {
       // for safari text-shadow bug fix //
       display: flex;
       transform: translateZ(0);
       ////////////////////////////////////
       font: {
-        size: 5vh;
-        weight: light;
+        size: 5vh; weight: light;
       };
       padding: {
         top: 2vh;
-      }
+      };
     }
   }
+
   .switch {
     position: fixed;
-    top: -15vh;
-    right: 10vw;
+    top: -15vh; right: 10vw;
     z-index: 1000;
+
     img {
-      height: 40vh;
       cursor: pointer;
+      height: 40vh;
     }
+
     &:hover {
       filter:brightness(2);
-    };
+    }
   }
   
   .logo {
@@ -79,57 +83,64 @@ body {
         top: 10vh;
       };
     }
+
     img {
-      max-height: 45vh;
-      max-width: 80vw;
+      max-width: 80vw; max-height: 45vh; 
       left: 0; right: 0;
       margin: auto;
     }
+
     .beef {
-      pointer-events: none;
-      border-radius: 100% 200% 80% 120%;
       position: absolute;
-      transition: filter 2s 0s, transform 1.5s 0s;
+      pointer-events: none;
       filter: brightness(.3);
+      border-radius: 100% 200% 80% 120%;
+      transition: filter 2s 0s, transform 1.5s 0s;
       z-index: 3;
+
       &.active {
         transform: translateY(-10vh) scale(1.1);
+
         & + .shadow {
           transform: translateY(10vh) scale(0.9);
         }
+
         & ~ .link {
-          transition: transform 1.5s, opacity 0s;
-          transform: translateY(30vh) rotate(-345deg);
           pointer-events: auto;
           opacity: 1;
+          transition: transform 1.5s, opacity 0s;
+          transform: translateY(30vh) rotate(-345deg);
         }
       }
     }
+
     .shadow {
       position: absolute;
-      transition: transform 1.5s, opacity 1.5s;
       top: 5vh;
       pointer-events: none;
+      transition: transform 1.5s, opacity 1.5s;
       z-index: 2;
     }
+    
     .link {
       position: absolute;
-      transition: transform 1.5s, opacity 0s 1.5s;
-      transform-origin: center;
-      max-width: 19vh;
-      width: 15vw;
-      left: 0;
-      right: 0;
-      top: 10vh;
+      left: 0; right: 0; top: 10vh;
+      width: 15vw; max-width: 19vh;
       margin: auto;
-      font-size: 0;
-      pointer-events: none;
       outline: none;
       opacity: 0;
+      pointer-events: none;
+      transition: transform 1.5s, opacity 0s 1.5s;
+      transform-origin: center;
+      font: {
+        size: 0;
+      };
+
       img {
         cursor: pointer;
         height: auto;
       }
+
       &:hover {
         filter: brightness(1.2);
       }
@@ -137,52 +148,49 @@ body {
   }
   
   footer {
-    // display: block;
     white-space: nowrap;
-    // justify-content: center;
-    // align-items: center;
-    text-align: center;
-    // border: 1px solid gray;
-    height: 17vh;
-    line-height: 23vh;
-    // position: absolute;
-    // left: 0; 
-    // right: 0;
-    // bottom: 0;
-    // min-width: 300px;
-    margin: 5vh auto 5vh;
     text-align: center;
     color: $color--text;
+    height: 17vh;
+    line-height: 23vh;
+    margin: 5vh auto 5vh;
+    text-align: center;
     font: {
       size: 2vw;
     };
+
     .light {
       // for safari text-shadow bug fix //
       display: inline-block;
       transform: translateZ(0);
       ////////////////////////////////////
     }
+
     .material-icons {
       pointer-events: none;
       font-size: 2vw;
     }
   }
+
   &.bright {
+    background-color: $color--bc;
     transition: background-color 1.5s 1.5s;
-    background-color: $color--dark;
+    
     & .beef {
-      pointer-events: auto;
       cursor: pointer;
+      pointer-events: auto;
       filter: brightness(1);
       transition: filter 2s 1.5s, transform 1.5s 0s;
+
       & + .shadow {
+        opacity: .4;
         transition: transform 1.5s, opacity 4s;
-        opacity: .4
       }
     }
+
     & .material-icons {
-      pointer-events: auto;
       cursor: pointer;
+      pointer-events: auto;
     }
   }
 }
