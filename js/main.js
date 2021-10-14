@@ -1,6 +1,6 @@
 import gsap from "gsap/all";
 import "../scss/main.scss";
-import _ from "lodash";
+import _, { forEach } from "lodash";
 
 (function () {
 
@@ -84,31 +84,26 @@ import _ from "lodash";
 
   }());
 
-  // keyboard click event
-  // TODO: add new event
-  // (function () {
-  //   const lightEls = selectorAll(".light");
-  //   const lightToggleEl = selector(".toggle-light")
-  //   let keyboardPressed = "";
-  //   let lightActive = false;
+  // keyboard type event
+  (function () {
 
-  //   if (!lightActive) {
-  //     window.addEventListener("keydown", k => {
+    let keyboardPressed = "";
 
-  //       keyboardPressed += (k.key);
+    window.addEventListener("keydown", k => {
 
-  //       if (/rarebeef|ㄱㅁㄱㄷㅠㄷㄷㄹ/i.test(keyboardPressed)) {
-  //         lightActive = true;
-  //         keyboardPressed = "";
-  //         lightOnSound.play();
-  //         lightEls.forEach((el, i) => {
-  //           setTimeout(() => {el.classList.add("light-on")}, 550*i);
-  //           setTimeout(() => {el.classList.remove("light-on"); lightActive = false}, 26000);
-  //         })
-  //       };
-  //     })
-  //   };
-  // }());
+      if (k.key.length === 1) {
+        keyboardPressed += (k.key);
+      };
+
+      if (/rarebeef|ㄱㅁㄱㄷㅠㄷㄷㄹ/i.test(keyboardPressed)) {
+        window.location.reload()
+        // lightToggleEl.click();
+        // keyboardPressed = ""; // reset keyboard input
+      };
+
+    });
+
+  }());
 
   // switch click event
   (function () {
@@ -137,7 +132,7 @@ import _ from "lodash";
             yoyo: true,
             delay: i*.55,
             color: "white",
-            "text-shadow": "rgb(255, 197, 207) 0 0 21px , rgb(255, 53, 87) 0 0 42px , rgb(255, 53, 87) 0 0 82px , rgb(255, 53, 87) 0 0 102px ",
+            "text-shadow": "#ff3557 0 0 21px, #ff3557 0 0 42px, #ff3557 0 0 82px, #ff3557 0 0 102px ",
           });
         });
 
