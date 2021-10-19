@@ -14,6 +14,14 @@ import _, { forEach } from "lodash";
   const lightEls = selectorAll(".light");
   const lightToggleEl = selector(".toggle-light");
   const bodyEl = selector("body");
+  const switchImgEl = selector(".toggle-light img");
+  
+  // fix switch disappears
+  window.addEventListener("resize", () => {
+    lightToggleEl.style.top = "-15vh";
+    lightToggleEl.style.right = "10vw";
+    switchImgEl.style.height = "40vh";
+  });
 
   // console log
   (function () {
