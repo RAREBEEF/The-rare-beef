@@ -5,7 +5,7 @@
 
 웹사이트에 등장하는 모든 이미지(소고기, 그림자, 열쇠, 스위치)는 모두 일러스트레이터에서 svg로 직접 제작한 이미지이다. 
 
-스위치 사운드의 출처는 <a href="http://www.theallsounds.com/2017/12/lamp-switch-sound-effects-all-sounds.html">여기</a>이며 Logic pro를 토해 편집 후 사용하였다.
+스위치 사운드의 출처는 <a href="http://www.theallsounds.com/2017/12/lamp-switch-sound-effects-all-sounds.html">여기</a>이며 Logic pro를 통해 편집 후 사용하였다.
 
 HTML, JavaScript, SCSS, npm, Webpack, Babel, git, netlify 등을 사용하였다.  
 
